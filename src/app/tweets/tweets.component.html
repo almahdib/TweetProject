@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Listes of tweets</div>
+    <div class="panel-body" *ngIf = "listTweets">
+      <span >
+       <table  class="table">
+         <tr>
+           <td>User ID</td>
+           <td>Tweet</td>
+           <td>Date de creation</td>
+           <td>Username</td>
+         </tr>
+         <tr *ngFor="let t of listTweets . _embedded .tweets">
+           <td> {{t.user_id}}</td>
+             <td> {{t.tweet}}</td>
+           <td> {{t.creation_date}}</td>
+           <td>{{t.username}}</td>
+         </tr>
+       </table>
+      </span>
+    </div>
+
+  </div>
+</div>
