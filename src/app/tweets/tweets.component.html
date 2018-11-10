@@ -1,4 +1,9 @@
+
 <div class="container">
+  <div>
+    <input class="form-control" type="text" [(ngModel)] = "search">
+    <button (click)="searchFun()" class="btn btn-danger">Search</button>
+  </div>
   <div class="panel panel-primary">
     <div class="panel-heading">Listes of tweets</div>
     <div class="panel-body" *ngIf = "listTweets">

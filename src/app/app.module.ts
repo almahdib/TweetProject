@@ -8,16 +8,19 @@ import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import { TweetsComponent } from './tweets/tweets.component';
 import {HttpClientModule} from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
 
 const root: Routes = [
-  {path : 'tweets' , component: TweetsComponent}
+  {path : 'tweets' , component: TweetsComponent},
+  {path : 'header' , component: HeaderComponent}
   ];
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TweetsComponent
+    TweetsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
