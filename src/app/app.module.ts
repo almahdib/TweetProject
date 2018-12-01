@@ -1,36 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import {RouterModule, Routes} from '@angular/router';
-import {HttpModule} from '@angular/http';
-import {FormsModule} from '@angular/forms';
-import { TweetsComponent } from './tweets/tweets.component';
-import {HttpClientModule} from '@angular/common/http';
-import { HeaderComponent } from './header/header.component';
-
-const root: Routes = [
-  {path : 'tweets' , component: TweetsComponent},
-  {path : 'header' , component: HeaderComponent}
-  ];
-
+import { AppComponent } from "./app.component";
+import { LoginComponent } from "./components/login/login.component";
+import { RegisterComponent } from "./components/register/register.component";
+import { FormsModule } from "@angular/forms";
+import { AuthService } from "./services/auth.service";
+import { HttpModule } from "@angular/http";
+import { AccountService } from "./services/account.service";
+import { ProfileComponent } from "./components/profile/profile.component";
+import { routing } from "./app.routing";
+import { FacebookModule } from "ngx-facebook";
+import { UrlPermission } from "./urlPermission/url.permission";
+import { TweetsComponent } from "./components/tweets/tweets.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TweetsComponent,
-    HeaderComponent
+    LoginComponent,
+    RegisterComponent,
+    TweetsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    RouterModule.forRoot(root),
-    HttpClientModule,
-    FormsModule
-
+    HttpModule,
+    FormsModule,
+    routing,
+    FacebookModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthService, AccountService, UrlPermission],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
