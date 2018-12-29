@@ -1,39 +1,66 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-
-    <ul class="nav navbar-nav">
-      <li class="active"><a>Home</a></li>
-
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-
-      <li><a href="#"><span class="glyphicon glyphicon-log-in" (click)="logOut()"></span> LogOut</a></li>
-    </ul>
-  </div>
-</nav>
+<app-header></app-header>
 <div class="container">
-  <div class="panel panel-primary">
-    <div class="panel-heading">Listes of tweets</div>
-    <div class="panel-body">
+  <div class="row">
+    <label for="keyword">Rechercher :</label>
+      <form name="form-signin" >
+          <div class="form-group col-lg-8" >
 
-      <div class="panel-body" *ngIf="listTweets">
-        <span>
-          <table class="table">
-            <tr>
-              <td>User ID</td>
-              <td>Tweet</td>
-              <td>Date de creation</td>
-              <td>Username</td>
-            </tr>
-            <tr *ngFor="let t of listTweets._embedded.tweets">
-              <td> {{t.user_id}}</td>
-              <td> {{t.tweet}}</td>
-              <td> {{t.creation_date}}</td>
-              <td>{{t.username}}</td>
-            </tr>
-          </table>
-        </span>
-      </div>
+              <input type="text" placeholder="taper votre recherche ..." class="form-control" id="username" name="search"  [(ngModel)]="search" required />
+          </div>
+          <div class="col-lg-4">
+              <button class="btn  btn-primary " (click)="searchx()" [disabled]="!search" type="submit">Rechercher</button>
 
-    </div>
+          </div>
+   </form>
+  </div>
+  <div class="row">
+      <ng4-loading-spinner  [timeout]="200000"> </ng4-loading-spinner>
+
+          <div  *ngIf="listTweets">
+            <span *ngIf="listTweets._embedded">
+              <table class="table">
+                <tr>
+                  <th>User ID</th>
+                  <th>Tweet</th>
+                  <th>Date de creation</th>
+                  <th>Username</th>
+                </tr>
+
+                    <tr  *ngFor="let t of listTweets._embedded.tweets">
+                        <td> {{t.user_id}}</td>
+                        <td> {{t.tweet}}</td>
+                        <td>  {{ t.creation_date | date:'medium'}}</td>
+                        <td>{{t.username}}</td>
+                      </tr>
+
+
+
+              </table>
+            </span>
+
+            <span *ngIf="!listTweets._embedded">
+                <table class="table">
+                  <tr>
+                    <td>User ID</td>
+                    <td>Tweet</td>
+                    <td>Date de creation</td>
+                    <td>Username</td>
+                  </tr>
+
+                      <tr  *ngFor="let t of listTweets">
+                          <td> {{t.user_id}}</td>
+                          <td> {{t.tweet}}</td>
+                          <td> {{t.creation_date}}</td>
+                          <td>{{t.username}}</td>
+                        </tr>
+
+
+
+                </table>
+              </span>
+          </div>
+
+
+    <!-- /form -->
+
   </div>

@@ -3,6 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { AuthService } from "../../services/auth.service";
 import { User } from "../../model/model.user";
 import { Router } from "@angular/router";
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: "app-tweets",
@@ -12,16 +13,39 @@ import { Router } from "@angular/router";
 })
 export class TweetsComponent implements OnInit {
   listTweets;
-  search: string = "Youssef";
+  loading=true;
+  search: string ;
   currentUser: User;
   constructor(
     public authService: AuthService,
     public router: Router,
-    public http: Http
+    public http: Http,
+    private spinnerService: Ng4LoadingSpinnerService
+
   ) {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  }
 
+  }
+  searchx(search){
+    this.spinnerService.show();
+
+    console.log(this.search);
+    this.http.get("http://localhost:8383/search/"+this.search).subscribe(
+      data => {
+        this.listTweets = data.json();
+        console.log(this.listTweets);
+        console.log("hi 2");
+        this.spinnerService.hide();
+
+      },
+      error1 => {
+        console.log("hi 3");
+
+        console.log(error1);
+      }
+    );
+
+  }
   ngOnInit() {
     console.log(this.listTweets);
     this.http.get("http://localhost:8383/tweets").subscribe(

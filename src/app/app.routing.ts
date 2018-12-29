@@ -1,3 +1,4 @@
+import { ResultComponent } from './result/result.component';
 import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
@@ -9,6 +10,8 @@ const appRoutes: Routes = [
   { path: "profile", component: TweetsComponent, canActivate: [UrlPermission] },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
+  { path: "result", component: ResultComponent },
+
 
   // otherwise redirect to profile
   { path: "**", redirectTo: "/login" }

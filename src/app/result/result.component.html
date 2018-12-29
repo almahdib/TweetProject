@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="container">
+
+<div class="row">
+    <form>
+        <div *ngIf="listTweetsR" class="col-lg-4">
+            <select name="idWord" [(ngModel)]="idWord" (change)="getResult()" class="form-control ">
+              <option *ngFor="let x of listTweetsR._embedded.searchedWords" [ngValue]="x.id" ng-change="getResult()" >{{x.word}}</option>
+            </select>
+          </div>
+
+    </form>
+</div>
+<div class="row" >
+    <div id="chartContainer" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;">
+      </div>
+</div>
+
+
+
+
+   </div>
+
+
